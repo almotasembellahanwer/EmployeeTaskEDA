@@ -1,0 +1,6 @@
+@EmployeeTask.BFF_HostAddress = http://localhost:5078
+
+GET {{EmployeeTask.BFF_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

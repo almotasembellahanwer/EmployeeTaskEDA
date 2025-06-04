@@ -1,0 +1,6 @@
+@EmployeeTask.Aggregator_HostAddress = http://localhost:5224
+
+GET {{EmployeeTask.Aggregator_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

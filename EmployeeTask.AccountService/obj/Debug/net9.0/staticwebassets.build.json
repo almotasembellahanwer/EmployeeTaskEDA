@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "qOaoXk0FHDEYY7OOWc+YhfT2QVX3V1a9dRiwn6aY4Wo=",
+  "Source": "EmployeeTask.AccountService",
+  "BasePath": "_content/EmployeeTask.AccountService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

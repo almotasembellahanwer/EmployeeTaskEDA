@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "EmployeeTask.AccountService\\EmployeeTask.AccountService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "EmployeeTask.BFF\\EmployeeTask.BFF.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "EmployeeTask.Aggregator\\EmployeeTask.Aggregator.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

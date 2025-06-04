@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SharedModels.RabbitMQEvents
+{
+    public interface IAddressCreatedEvent
+    {
+        public int AddressID { get; set; }
+        public string? AddressName { get; set; }
+    }
+}

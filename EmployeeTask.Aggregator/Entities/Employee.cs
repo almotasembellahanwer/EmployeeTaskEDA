@@ -1,0 +1,11 @@
+﻿using System.Net;
+
+namespace EmployeeTask.Aggregator.Entities;
+public class Employee
+{
+    public int EmployeeID { get; set; }
+    public string EmployeeName { get; set; } = string.Empty;
+    public int? AddressID { get; set; }
+    public string? AddressName { get; set; }
+    public Address Address { get; set; } = default!;
+}

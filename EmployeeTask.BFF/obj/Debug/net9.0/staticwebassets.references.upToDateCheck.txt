@@ -1,0 +1,4 @@
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.AccountService\obj\Debug\net9.0\staticwebassets.build.json
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.Aggregator\obj\Debug\net9.0\staticwebassets.build.json
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.AccountService\obj\Debug\net9.0\staticwebassets.build.json
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.Aggregator\obj\Debug\net9.0\staticwebassets.build.json

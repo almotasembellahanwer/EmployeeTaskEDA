@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ht6tzY/w68uVhmW00FrHIUJRo6Ygmx1YEhKLU85Pdak=",
+  "Source": "EmployeeTask.Aggregator",
+  "BasePath": "_content/EmployeeTask.Aggregator",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

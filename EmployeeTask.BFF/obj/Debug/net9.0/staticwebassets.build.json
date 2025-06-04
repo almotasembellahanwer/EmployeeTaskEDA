@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "4h+y9a4kimxyrgDBkiDWO9AlOl1NAnmEnyvy3EBN6uc=",
+  "Source": "EmployeeTask.BFF",
+  "BasePath": "_content/EmployeeTask.BFF",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
