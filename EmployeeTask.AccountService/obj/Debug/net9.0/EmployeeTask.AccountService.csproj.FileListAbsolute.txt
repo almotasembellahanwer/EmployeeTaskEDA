@@ -179,3 +179,5 @@ E:\Motasem\EmployeeTaskSolution\EmployeeTask.AccountService\bin\Debug\net9.0\Rab
 E:\Motasem\EmployeeTaskSolution\EmployeeTask.AccountService\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 E:\Motasem\EmployeeTaskSolution\EmployeeTask.AccountService\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 E:\Motasem\EmployeeTaskSolution\EmployeeTask.AccountService\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.AccountService\obj\Debug\net9.0\EmployeeTask.AccountService.sourcelink.json
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.AccountService\bin\Debug\net9.0\FluentValidation.dll

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "82Xryan4EKs=",
+  "dgSpecHash": "Aw4mngGKYsk=",
   "success": true,
   "projectFilePath": "E:\\Motasem\\EmployeeTaskSolution\\SharedModels\\SharedModels.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Motasem\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

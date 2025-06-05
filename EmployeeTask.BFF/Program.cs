@@ -1,4 +1,5 @@
 using EmployeeTask.BFF.HttpClients;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddHttpClient<AggregatorServiceClient>(client =>
 {
     client.BaseAddress = new Uri($"http://localhost:5224/");
 });
+builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();

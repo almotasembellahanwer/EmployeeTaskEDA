@@ -2,9 +2,9 @@
 using Mapster;
 using MassTransit;
 using SharedModels.DTO.AddressDTO;
-using SharedModels.RabbitMQEvents;
+using SharedModels.RabbitMQEvents.AddressEvents;
 
-namespace EmployeeTask.Aggregator.Consumers.AddressConsumer
+namespace EmployeeTask.Aggregator.AddressConsumer
 {
     public class AddressDeletedConsumer : IConsumer<IAddressDeletedEvent>
     {
@@ -23,7 +23,7 @@ namespace EmployeeTask.Aggregator.Consumers.AddressConsumer
             {
                 IAddressDeletedEvent message = context.Message;
                 bool isDeleted = await _addressesService.DeleteAddress(message.AddressID);
-                _logger.LogError(isDeleted ? "Successfully Deleted address" : "Failed to delete address");
+                _logger.LogInformation(isDeleted ? "Successfully Deleted address" : "Failed to delete address");
 
             }
             catch (Exception ex)

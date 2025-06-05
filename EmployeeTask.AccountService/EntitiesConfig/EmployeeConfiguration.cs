@@ -21,8 +21,6 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
             .HasForeignKey<Employee>(e=>e.AddressID)
             .IsRequired(false);
 
-    builder.Ignore(e => e.AddressName);
-
         builder.ToTable("Employees");
     }
 }

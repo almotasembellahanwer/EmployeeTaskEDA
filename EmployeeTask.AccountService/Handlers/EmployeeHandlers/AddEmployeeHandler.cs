@@ -3,7 +3,7 @@ using EmployeeTask.AccountService.ServiceContracts;
 using MassTransit;
 using MediatR;
 using SharedModels.DTO.EmployeeDTO;
-using SharedModels.RabbitMQEvents;
+using SharedModels.RabbitMQEvents.EmployeeEvents;
 
 namespace EmployeeTask.AccountService.Handlers.EmployeeHandlers
 {
@@ -27,8 +27,7 @@ namespace EmployeeTask.AccountService.Handlers.EmployeeHandlers
                 await _publishEndpoint.Publish<IEmployeeCreatedEvent>(new
                 {
                     employeeResponse.EmployeeID,
-                    employeeResponse.EmployeeName,
-                    employeeResponse.AddressName
+                    employeeResponse.EmployeeName
                 });
             }
             return employeeResponse ?? throw new InvalidOperationException("Error while adding an employee");

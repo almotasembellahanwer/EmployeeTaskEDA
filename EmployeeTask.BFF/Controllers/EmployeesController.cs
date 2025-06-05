@@ -1,7 +1,8 @@
 ﻿using EmployeeTask.BFF.HttpClients;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SharedModels.DTO;
 using SharedModels.DTO.EmployeeDTO;
+using System.Net;
 
 namespace EmployeeTask.BFF.Controllers
 {
@@ -11,26 +12,112 @@ namespace EmployeeTask.BFF.Controllers
     {
         private readonly AggregatorServiceClient _aggregatorClient;
         private readonly AccountServiceClient _accountClient;
-
+        private readonly APIResponse _response;
 
         public EmployeesController(AggregatorServiceClient aggregatorClient, AccountServiceClient accountClient)
         {
             _aggregatorClient = aggregatorClient;
             _accountClient = accountClient;
+            _response = new();
         }
 
-        [HttpGet]
-        public async Task<ActionResult<EmployeeResponse>> GetAllEmployees()
+        [HttpGet("GetAll")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<APIResponse>> GetAllEmployees()
         {
-            IEnumerable<EmployeeResponse>? response = await _aggregatorClient.GetAllEmployees();
-            return Ok(response);
+            IEnumerable<EmployeeResponse>? employees = await _aggregatorClient.GetAllEmployees();
+            _response.StatusCode = HttpStatusCode.OK;
+            _response.Result = employees;
+            return Ok(_response);
         }
-
-        [HttpPost]
-        public async Task<ActionResult<EmployeeResponse>> AddEmployee([FromBody] EmployeeAddRequest employeeDTO)
+        [HttpGet("Get/{employeeID:int}", Name = "GetEmployee")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<APIResponse>> GetEmployee(int employeeID)
         {
-            EmployeeResponse? response = await _accountClient.AddEmployee(employeeDTO);
-            return Ok(response);
+            if (employeeID == 0)
+            {
+                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                return BadRequest(_response);
+            }
+            EmployeeResponse? employee = await _aggregatorClient.GetEmployeeByID(employeeID);
+            if (employee is null)
+            {
+                _response.StatusCode = HttpStatusCode.NotFound;
+                _response.IsSuccess = false;
+                return NotFound(_response);
+            }
+            _response.StatusCode = HttpStatusCode.OK;
+            _response.Result = employee;
+            return Ok(_response);
+        }
+        [HttpPost("Add")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<APIResponse>> AddEmployee(EmployeeAddRequest? employeeRequest)
+        {
+            if (employeeRequest is null)
+            {
+                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                return BadRequest(_response);
+            }
+            EmployeeResponse? employee = await _accountClient.AddEmployee(employeeRequest);
+            if (employee is null)
+            {
+                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                return BadRequest(_response);
+            }
+            _response.StatusCode = HttpStatusCode.OK;
+            _response.Result = employee;
+            return CreatedAtRoute("GetEmployee", new { employeeID = employee.EmployeeID }, _response);
+        }
+        [HttpPut("Update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<APIResponse>> UpdateEmployee(EmployeeUpdateRequest? employeeRequest)
+        {
+            if (employeeRequest is null)
+            {
+                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                return BadRequest(_response);
+            }
+            EmployeeResponse? employee = await _accountClient.UpdateEmployee(employeeRequest);
+            if (employee is null)
+            {
+                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                return BadRequest(_response);
+            }
+            _response.StatusCode = HttpStatusCode.OK;
+            _response.Result = employee;
+            return Ok(_response);
+        }
+        [HttpDelete("Delete/{employeeID:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<APIResponse>> DeleteEmployee(int employeeID)
+        {
+            if (employeeID == 0)
+            {
+                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                return BadRequest(_response);
+            }
+            bool isDeleted = await _accountClient.DeleteEmployee(employeeID);
+            if (!isDeleted)
+            {
+                _response.StatusCode = HttpStatusCode.NotFound;
+                _response.IsSuccess = false;
+                return NotFound(_response);
+            }
+
+            return NoContent();
         }
     }
 }

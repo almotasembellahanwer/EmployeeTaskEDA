@@ -2,7 +2,9 @@
 namespace EmployeeTask.Aggregator.ServiceContracts;
 public interface IEmployeesService
 {
-    Task<IEnumerable<EmployeeResponse>?> GetAllEmployees();
-    Task<EmployeeResponse?> GetEmployeeByID(int employeeID);
+    Task<IEnumerable<EmployeeResponseGet>?> GetAllEmployees();
+    Task<EmployeeResponseGet?> GetEmployeeByID(int employeeID);
     Task<EmployeeResponse?> AddEmployee(EmployeeAddRequest? entity);
+    Task<EmployeeResponse?> UpdateEmployee(EmployeeUpdateRequest? entity);
+    Task<bool> DeleteEmployee(int employeeID);
 }

@@ -13,13 +13,13 @@ namespace EmployeeTask.Aggregator.Repositories
 
         public EmployeeRepository(AggregatorDbContext context) => _context = context;
 
-        public async Task<IEnumerable<EmployeeResponse>?> GetAllEmployees()
+        public async Task<IEnumerable<EmployeeResponseGet>?> GetAllEmployees()
         {
-            IEnumerable<EmployeeResponse> employees = await _context.Employees
-                .Select(e => new EmployeeResponse(e.EmployeeID, e.EmployeeName, e.Address.AddressName))
+            IEnumerable<EmployeeResponseGet> employees = await _context.Employees
+                .Select(e => new EmployeeResponseGet(e.EmployeeID, e.EmployeeName, e.Address.AddressName))
                 .ToListAsync();
             if (employees is null)
-                return new List<EmployeeResponse>();
+                return new List<EmployeeResponseGet>();
             return employees;
         }
 
@@ -28,11 +28,11 @@ namespace EmployeeTask.Aggregator.Repositories
             if (employeeID <= 0)
                 throw new ArgumentException($"Invalid ID");
 
-            EmployeeResponse? employeeResponse = await (from e in _context.Employees
+            EmployeeResponseGet? employeeResponse = await (from e in _context.Employees
                                                         join a in _context.Addresses on e.AddressID equals a.AddressID into addressGroup
                                                         from address in addressGroup.DefaultIfEmpty()
                                                         where e.EmployeeID == employeeID
-                                                        select new EmployeeResponse(e.EmployeeID, e.EmployeeName, address.AddressName))
+                                                        select new EmployeeResponseGet(e.EmployeeID, e.EmployeeName, address.AddressName))
                                                             .FirstOrDefaultAsync();
 
 
@@ -48,6 +48,31 @@ namespace EmployeeTask.Aggregator.Repositories
             _context.Employees.Add(entity);
             await _context.SaveChangesAsync();
             return entity;
+        }
+        public async Task<Employee?> UpdateEmployee(Employee? entity)
+        {
+            if (entity is null)
+                throw new ArgumentException("Invalid Employee");
+            Employee? existingEmployee = await _context.Employees
+                .FirstOrDefaultAsync(e => e.EmployeeID == entity.EmployeeID);
+            if (existingEmployee is null)
+                return null;
+            existingEmployee.EmployeeID = entity.EmployeeID;
+            existingEmployee.EmployeeName = entity.EmployeeName;
+            existingEmployee.AddressID = entity.AddressID;
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task<bool> DeleteEmployee(int employeeID)
+        {
+            Employee? employee = await _context.Employees
+                .FirstOrDefaultAsync(e => e.EmployeeID == employeeID);
+            if (employee is null)
+                return false;
+            _context.Employees.Remove(employee);
+            int rowsCountAffected = await _context.SaveChangesAsync();
+            return rowsCountAffected > 0;
         }
     }
 }

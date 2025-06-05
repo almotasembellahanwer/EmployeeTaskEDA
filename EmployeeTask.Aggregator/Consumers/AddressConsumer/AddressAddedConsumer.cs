@@ -2,9 +2,9 @@
 using Mapster;
 using MassTransit;
 using SharedModels.DTO.AddressDTO;
-using SharedModels.RabbitMQEvents;
+using SharedModels.RabbitMQEvents.AddressEvents;
 
-namespace EmployeeTask.Aggregator.Consumers.AddressConsumer
+namespace EmployeeTask.Aggregator.AddressConsumer
 {
     public class AddressAddedConsumer : IConsumer<IAddressCreatedEvent>
     {

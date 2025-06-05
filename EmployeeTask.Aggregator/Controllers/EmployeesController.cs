@@ -18,7 +18,7 @@ namespace EmployeeTask.Aggregator.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllEmployees()
         {
-            IEnumerable<EmployeeResponse> employees = await _sender.Send(new GetEmployeesQuery());
+            IEnumerable<EmployeeResponseGet> employees = await _sender.Send(new GetEmployeesQuery());
             return Ok(employees);
         }
         [HttpGet("{id:int}")]
@@ -26,7 +26,7 @@ namespace EmployeeTask.Aggregator.Controllers
         {
             if (id <= 0)
                 return BadRequest("Invalid ID provided");
-            EmployeeResponse? employee = await _sender.Send(new GetEmployeeByIdQuery(id));
+            EmployeeResponseGet? employee = await _sender.Send(new GetEmployeeByIdQuery(id));
             if (employee is null)
                 return NotFound($"Employee with ID {id} not found");
             return Ok(employee);

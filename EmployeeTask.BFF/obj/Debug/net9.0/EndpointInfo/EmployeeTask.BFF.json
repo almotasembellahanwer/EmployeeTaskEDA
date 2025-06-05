@@ -109,10 +109,6 @@
           "employeeName": {
             "type": "string",
             "nullable": true
-          },
-          "addressName": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false

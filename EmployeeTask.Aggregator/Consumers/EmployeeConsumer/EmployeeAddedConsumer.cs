@@ -2,9 +2,9 @@
 using Mapster;
 using MassTransit;
 using SharedModels.DTO.EmployeeDTO;
-using SharedModels.RabbitMQEvents;
+using SharedModels.RabbitMQEvents.EmployeeEvents;
 
-namespace EmployeeTask.Aggregator.Consumers.EmployeeConsumer
+namespace EmployeeTask.Aggregator.EmployeeConsumer
 {
     public class EmployeeAddedConsumer : IConsumer<IEmployeeCreatedEvent>
     {
@@ -22,8 +22,8 @@ namespace EmployeeTask.Aggregator.Consumers.EmployeeConsumer
             try
             {
                 IEmployeeCreatedEvent message = context.Message;
-                _logger.LogInformation("Employee Added: {EmployeeID}, {EmployeeName}, {AddressName}"
-                    , message.EmployeeID, message.EmployeeName, message.AddressName);
+                _logger.LogInformation("Employee Added: {EmployeeID}, {EmployeeName}"
+                    , message.EmployeeID, message.EmployeeName);
                 var employee = message.Adapt<EmployeeAddRequest>();
                 EmployeeResponse? result = await _employeesService.AddEmployee(employee);
                 if (result is null)

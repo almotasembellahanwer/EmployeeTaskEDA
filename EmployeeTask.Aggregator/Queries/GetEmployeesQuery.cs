@@ -4,5 +4,5 @@ using SharedModels.DTO.EmployeeDTO;
 
 namespace EmployeeTask.Aggregator.Queries
 {
-    public record GetEmployeesQuery() : IRequest<IEnumerable<EmployeeResponse>>;
+    public record GetEmployeesQuery() : IRequest<IEnumerable<EmployeeResponseGet>>;
 }

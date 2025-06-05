@@ -3,7 +3,7 @@ using EmployeeTask.AccountService.ServiceContracts;
 using MassTransit;
 using MediatR;
 using SharedModels.DTO.AddressDTO;
-using SharedModels.RabbitMQEvents;
+using SharedModels.RabbitMQEvents.AddressEvents;
 
 namespace EmployeeTask.AccountService.Handlers.AddressHandlers
 {

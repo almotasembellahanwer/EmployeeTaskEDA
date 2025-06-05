@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedModels.RabbitMQEvents
+namespace SharedModels.RabbitMQEvents.EmployeeEvents
 {
-    public interface IEmployeeCreatedEvent
+    public interface IEmployeeDeletedEvent
     {
         public int EmployeeID { get; set; }
-        public string? EmployeeName { get; set; }
-        public string? AddressName { get; set; }
+        public DateTime DeletedAt { get; set; }
     }
 }

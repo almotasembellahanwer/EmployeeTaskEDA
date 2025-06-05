@@ -29,9 +29,8 @@ namespace EmployeeTask.AccountService.Repositories
 
             Address? existingAddress = await _context.Addresses
                 .FirstOrDefaultAsync(a => a.AddressID == entity.AddressID);
-            if (existingAddress is null)
+            if (existingAddress is null || existingAddress.AddressID != entity.AddressID)
                 return null;
-            existingAddress.AddressID = entity.AddressID;
             existingAddress.AddressName = entity.AddressName;
             await _context.SaveChangesAsync();
             return entity;
@@ -39,6 +38,12 @@ namespace EmployeeTask.AccountService.Repositories
 
         public async Task<bool> DeleteAddress(int addressID)
         {
+            var employees = await _context.Employees.Where(e => e.AddressID == addressID).ToListAsync();
+            foreach (var employee in employees)
+            {
+                employee.AddressID = null; // Make addressID null when deleting address
+            }
+            await _context.SaveChangesAsync();
             Address? address = await _context.Addresses
                 .FirstOrDefaultAsync(a => a.AddressID == addressID);
             if (address is null)

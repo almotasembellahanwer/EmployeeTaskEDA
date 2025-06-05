@@ -14,22 +14,22 @@ public class EmployeesService : IEmployeesService
         _employeeRepository = employeeRepository;
     }
 
-    public async Task<IEnumerable<EmployeeResponse>?> GetAllEmployees()
+    public async Task<IEnumerable<EmployeeResponseGet>?> GetAllEmployees()
     {
-        IEnumerable<EmployeeResponse>? employees = await _employeeRepository.GetAllEmployees();
+        IEnumerable<EmployeeResponseGet>? employees = await _employeeRepository.GetAllEmployees();
         if (employees is null)
-            return new List<EmployeeResponse>();
+            return new List<EmployeeResponseGet>();
         return employees;
     }
 
-    public async Task<EmployeeResponse?> GetEmployeeByID(int employeeID)
+    public async Task<EmployeeResponseGet?> GetEmployeeByID(int employeeID)
     {
         if (employeeID == 0)
             throw new ArgumentException("Invalid ID");
         Employee? employee = await _employeeRepository.GetEmployeeByID(employeeID);
         if (employee is null)
             return null;
-        EmployeeResponse response = employee.Adapt<EmployeeResponse>();
+        EmployeeResponseGet response = employee.Adapt<EmployeeResponseGet>();
         return response;
     }
 
@@ -43,5 +43,23 @@ public class EmployeesService : IEmployeesService
             throw new InvalidOperationException("error while adding employee");
         EmployeeResponse response = employeeAdded.Adapt<EmployeeResponse>();
         return response;
+    }
+    public async Task<EmployeeResponse?> UpdateEmployee(EmployeeUpdateRequest? entity)
+    {
+        if (entity is null)
+            throw new ArgumentException("Invalid employee to add");
+        Employee employee = entity.Adapt<Employee>();
+        Employee? employeeUpdated = await _employeeRepository.UpdateEmployee(employee);
+        if (employeeUpdated is null)
+            throw new ArgumentException("error while updating employee");
+        EmployeeResponse response = employeeUpdated.Adapt<EmployeeResponse>();
+        return response;
+    }
+    public async Task<bool> DeleteEmployee(int employeeID)
+    {
+        if (employeeID == 0)
+            throw new ArgumentException("Invalid ID");
+        bool isDeleted = await _employeeRepository.DeleteEmployee(employeeID);
+        return isDeleted;
     }
 }

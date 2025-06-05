@@ -1,8 +1,2 @@
 ﻿namespace SharedModels.DTO.EmployeeDTO;
-public record EmployeeResponse(int? EmployeeID, string? EmployeeName, string? AddressName)
-{
-    public EmployeeResponse() : this(default, default, default)
-    {
-
-    }
-}
+public record EmployeeResponse(int? EmployeeID, string? EmployeeName);

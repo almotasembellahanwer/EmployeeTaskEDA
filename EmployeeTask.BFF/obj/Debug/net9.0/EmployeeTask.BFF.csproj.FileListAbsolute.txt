@@ -37,3 +37,7 @@ E:\Motasem\EmployeeTaskSolution\EmployeeTask.BFF\obj\Debug\net9.0\refint\Employe
 E:\Motasem\EmployeeTaskSolution\EmployeeTask.BFF\obj\Debug\net9.0\EmployeeTask.BFF.pdb
 E:\Motasem\EmployeeTaskSolution\EmployeeTask.BFF\obj\Debug\net9.0\EmployeeTask.BFF.genruntimeconfig.cache
 E:\Motasem\EmployeeTaskSolution\EmployeeTask.BFF\obj\Debug\net9.0\ref\EmployeeTask.BFF.dll
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.BFF\obj\Debug\net9.0\EmployeeTask.BFF.sourcelink.json
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.BFF\bin\Debug\net9.0\FluentValidation.dll
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.BFF\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+E:\Motasem\EmployeeTaskSolution\EmployeeTask.BFF\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll

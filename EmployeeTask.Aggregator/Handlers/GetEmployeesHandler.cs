@@ -7,7 +7,7 @@ using SharedModels.RabbitMQEvents;
 
 namespace EmployeeTask.Aggregator.Handlers
 {
-    public class GetEmployeesHandler : IRequestHandler<GetEmployeesQuery, IEnumerable<EmployeeResponse>>
+    public class GetEmployeesHandler : IRequestHandler<GetEmployeesQuery, IEnumerable<EmployeeResponseGet>>
     {
         private readonly IEmployeesService _employeesService;
 
@@ -16,14 +16,14 @@ namespace EmployeeTask.Aggregator.Handlers
             _employeesService = employeesService;
         }
 
-        public async Task<IEnumerable<EmployeeResponse>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<EmployeeResponseGet>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
         {
             // Get All Employees from database
-            IEnumerable<EmployeeResponse>? employees =  await _employeesService.GetAllEmployees()
-                ?? new List<EmployeeResponse>();
+            IEnumerable<EmployeeResponseGet>? employees =  await _employeesService.GetAllEmployees()
+                ?? new List<EmployeeResponseGet>();
             
             if (employees is null)
-                return new List<EmployeeResponse>();
+                return new List<EmployeeResponseGet>();
             return employees;
         }
     }

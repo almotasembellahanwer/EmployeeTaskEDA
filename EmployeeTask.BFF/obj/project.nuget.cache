@@ -1,11 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "cAmeRT2ZMIU=",
+  "dgSpecHash": "f9r/3d6ZIu4=",
   "success": true,
   "projectFilePath": "E:\\Motasem\\EmployeeTaskSolution\\EmployeeTask.BFF\\EmployeeTask.BFF.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Motasem\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
+    "C:\\Users\\Motasem\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
+    "C:\\Users\\Motasem\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "C:\\Users\\Motasem\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.0\\microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
     "C:\\Users\\Motasem\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\Motasem\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
     "C:\\Users\\Motasem\\.nuget\\packages\\microsoft.openapi\\1.6.23\\microsoft.openapi.1.6.23.nupkg.sha512",
     "C:\\Users\\Motasem\\.nuget\\packages\\swashbuckle.aspnetcore\\8.1.3\\swashbuckle.aspnetcore.8.1.3.nupkg.sha512",
     "C:\\Users\\Motasem\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\8.1.3\\swashbuckle.aspnetcore.swagger.8.1.3.nupkg.sha512",

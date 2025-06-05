@@ -2,9 +2,9 @@
 using Mapster;
 using MassTransit;
 using SharedModels.DTO.AddressDTO;
-using SharedModels.RabbitMQEvents;
+using SharedModels.RabbitMQEvents.AddressEvents;
 
-namespace EmployeeTask.Aggregator.Consumers.AddressConsumer
+namespace EmployeeTask.Aggregator.AddressConsumer
 {
     public class AddressUpdatedConsumer : IConsumer<IAddressUpdatedEvent>
     {
@@ -25,7 +25,7 @@ namespace EmployeeTask.Aggregator.Consumers.AddressConsumer
                 var address = new AddressUpdateRequest(message.AddressID,message.NewAddressName!);
                 AddressResponse? result = await _addressesService.UpdateAddress(address);
 
-                _logger.LogError(result is not null ? $"Updated Address {result.AddressID} {result.AddressName}" : "Failed to update address to aggregator database");
+                _logger.LogInformation(result is not null ? $"Updated Address {result.AddressID} {result.AddressName}" : "Failed to update address to aggregator database");
 
             }
             catch (Exception ex)
