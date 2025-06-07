@@ -22,9 +22,9 @@ namespace EmployeeTask.Aggregator.EmployeeConsumer
             try
             {
                 IEmployeeCreatedEvent message = context.Message;
-                _logger.LogInformation("Employee Added: {EmployeeID}, {EmployeeName}"
-                    , message.EmployeeID, message.EmployeeName);
-                var employee = message.Adapt<EmployeeAddRequest>();
+                _logger.LogInformation("Employee Added: {EmployeeID}, {EmployeeName}, {AddressID}"
+                    , message.EmployeeID, message.EmployeeName,message.AddressID);
+                EmployeeAddRequest employee = new EmployeeAddRequest(message.EmployeeName,message.AddressID);
                 EmployeeResponse? result = await _employeesService.AddEmployee(employee);
                 if (result is null)
                 {

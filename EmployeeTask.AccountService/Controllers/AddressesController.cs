@@ -16,7 +16,7 @@ namespace EmployeeTask.AccountService.Controllers
             _sender = sender;
         }
         [HttpPost]
-        public async Task<IActionResult> AddAddress(AddressAddRequest? addressDTO)
+        public async Task<IActionResult> AddAddress([FromBody] AddressAddRequest? addressDTO)
         {
             if (addressDTO is null)
                 return BadRequest();
@@ -25,7 +25,7 @@ namespace EmployeeTask.AccountService.Controllers
             return Ok(response);
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateAddress(AddressUpdateRequest? addressDTO)
+        public async Task<IActionResult> UpdateAddress([FromBody] AddressUpdateRequest? addressDTO)
         {
             if (addressDTO is null)
                 return BadRequest();

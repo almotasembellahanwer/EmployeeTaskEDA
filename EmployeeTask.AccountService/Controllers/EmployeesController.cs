@@ -31,7 +31,7 @@ namespace EmployeeTask.AccountService.Controllers
             return Ok(response);
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateEmployee(EmployeeUpdateRequest? employeeDTO)
+        public async Task<IActionResult> UpdateEmployee([FromBody] EmployeeUpdateRequest? employeeDTO)
         {
             if (employeeDTO is null)
                 return BadRequest();

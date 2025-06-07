@@ -10,5 +10,7 @@ namespace SharedModels.RabbitMQEvents.EmployeeEvents
     {
         public int EmployeeID { get; set; }
         public string? EmployeeName { get; set; }
+        public int AddressID { get; set; }
+
     }
 }

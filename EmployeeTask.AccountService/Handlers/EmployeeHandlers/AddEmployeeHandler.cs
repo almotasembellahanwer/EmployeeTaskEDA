@@ -27,7 +27,8 @@ namespace EmployeeTask.AccountService.Handlers.EmployeeHandlers
                 await _publishEndpoint.Publish<IEmployeeCreatedEvent>(new
                 {
                     employeeResponse.EmployeeID,
-                    employeeResponse.EmployeeName
+                    employeeResponse.EmployeeName,
+                    employeeResponse.AddressID
                 });
             }
             return employeeResponse ?? throw new InvalidOperationException("Error while adding an employee");

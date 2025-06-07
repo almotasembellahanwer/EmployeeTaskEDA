@@ -13,7 +13,7 @@ namespace EmployeeTask.BFF.HttpClients
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<EmployeeResponse>?> GetAllEmployees()
+        public async Task<IEnumerable<EmployeeResponseGet>?> GetAllEmployees()
         {
             HttpResponseMessage response = await _httpClient.GetAsync("api/Employees");
             if (!response.IsSuccessStatusCode)
@@ -32,9 +32,9 @@ namespace EmployeeTask.BFF.HttpClients
                 }
             }
 
-            IEnumerable<EmployeeResponse>? employeeResponse = await response.Content.ReadFromJsonAsync<IEnumerable<EmployeeResponse>>();
+            IEnumerable<EmployeeResponseGet>? employeeResponse = await response.Content.ReadFromJsonAsync<IEnumerable<EmployeeResponseGet>>();
             if (employeeResponse is null)
-                return new List<EmployeeResponse>();
+                return new List<EmployeeResponseGet>();
             return employeeResponse;
         }
         public async Task<EmployeeResponse?> GetEmployeeByID(int employeeID)
@@ -89,7 +89,7 @@ namespace EmployeeTask.BFF.HttpClients
         }
         public async Task<AddressResponse?> GetAddressByID(int addressID)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"api/Employees/{addressID}");
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Addresses/{addressID}");
             if (!response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.NotFound)

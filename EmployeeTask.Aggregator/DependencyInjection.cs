@@ -37,6 +37,16 @@ namespace EmployeeTask.Aggregator
                         e.ConfigureConsumer<EmployeeAddedConsumer>(context);
                         e.UseMessageRetry(r => r.Interval(3, 1000));
                     });
+                    cfg.ReceiveEndpoint("employee-updated-event", e =>
+                    {
+                        e.ConfigureConsumer<EmployeeUpdatedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+                    cfg.ReceiveEndpoint("employee-deleted-event", e =>
+                    {
+                        e.ConfigureConsumer<EmployeeDeletedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
                     cfg.ReceiveEndpoint("address-added-event", e =>
                     {
                         e.ConfigureConsumer<AddressAddedConsumer>(context);

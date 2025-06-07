@@ -29,7 +29,7 @@ public class EmployeesService : IEmployeesService
         Employee? employee = await _employeeRepository.GetEmployeeByID(employeeID);
         if (employee is null)
             return null;
-        EmployeeResponseGet response = employee.Adapt<EmployeeResponseGet>();
+        EmployeeResponseGet response = new EmployeeResponseGet(employee.EmployeeID,employee.EmployeeName,employee.AddressName);
         return response;
     }
 

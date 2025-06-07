@@ -25,7 +25,7 @@ namespace EmployeeTask.BFF.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<APIResponse>> GetAllEmployees()
         {
-            IEnumerable<EmployeeResponse>? employees = await _aggregatorClient.GetAllEmployees();
+            IEnumerable<EmployeeResponseGet>? employees = await _aggregatorClient.GetAllEmployees();
             _response.StatusCode = HttpStatusCode.OK;
             _response.Result = employees;
             return Ok(_response);
@@ -42,7 +42,7 @@ namespace EmployeeTask.BFF.Controllers
                 _response.IsSuccess = false;
                 return BadRequest(_response);
             }
-            EmployeeResponse? employee = await _aggregatorClient.GetEmployeeByID(employeeID);
+            EmployeeResponseGet? employee = await _aggregatorClient.GetEmployeeByID(employeeID);
             if (employee is null)
             {
                 _response.StatusCode = HttpStatusCode.NotFound;
@@ -56,7 +56,7 @@ namespace EmployeeTask.BFF.Controllers
         [HttpPost("Add")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<APIResponse>> AddEmployee(EmployeeAddRequest? employeeRequest)
+        public async Task<ActionResult<APIResponse>> AddEmployee([FromBody] EmployeeAddRequest? employeeRequest)
         {
             if (employeeRequest is null)
             {
@@ -78,7 +78,7 @@ namespace EmployeeTask.BFF.Controllers
         [HttpPut("Update")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<APIResponse>> UpdateEmployee(EmployeeUpdateRequest? employeeRequest)
+        public async Task<ActionResult<APIResponse>> UpdateEmployee([FromBody] EmployeeUpdateRequest? employeeRequest)
         {
             if (employeeRequest is null)
             {

@@ -23,7 +23,7 @@ namespace EmployeeTask.AccountService.Services
             Employee? employeeAdded = await _employeeRepository.AddEmployee(employee);
             if (employeeAdded is null)
                 throw new InvalidOperationException("error while adding employee");
-            EmployeeResponse response = employeeAdded.Adapt<EmployeeResponse>();
+            EmployeeResponse response = new EmployeeResponse(employeeAdded.EmployeeID, employeeAdded.EmployeeName, employeeAdded.AddressID);
             return response;
         }
         public async Task<EmployeeResponse?> UpdateEmployee(EmployeeUpdateRequest? entity)
