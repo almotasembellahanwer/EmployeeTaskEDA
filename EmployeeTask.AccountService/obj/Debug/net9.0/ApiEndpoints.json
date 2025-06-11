@@ -94,5 +94,53 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.AccountService.Controllers.GovernoratesController",
+    "Method": "AddGovernorate",
+    "RelativePath": "api/Governorates",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "governorateDTO",
+        "Type": "SharedModels.DTO.GovernorateDTO.GovernorateAddRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.AccountService.Controllers.GovernoratesController",
+    "Method": "UpdateGovernorate",
+    "RelativePath": "api/Governorates",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "governorateDTO",
+        "Type": "SharedModels.DTO.GovernorateDTO.GovernorateUpdateRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.AccountService.Controllers.GovernoratesController",
+    "Method": "DeleteGovernorate",
+    "RelativePath": "api/Governorates/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

@@ -37,7 +37,7 @@ namespace EmployeeTask.BFF.HttpClients
                 return new List<EmployeeResponseGet>();
             return employeeResponse;
         }
-        public async Task<EmployeeResponse?> GetEmployeeByID(int employeeID)
+        public async Task<EmployeeResponseGet?> GetEmployeeByID(int employeeID)
         {
             HttpResponseMessage response = await _httpClient.GetAsync($"api/Employees/{employeeID}");
             if (!response.IsSuccessStatusCode)
@@ -56,7 +56,7 @@ namespace EmployeeTask.BFF.HttpClients
                 }
             }
 
-            EmployeeResponse? employeeResponse = await response.Content.ReadFromJsonAsync<EmployeeResponse>();
+            EmployeeResponseGet? employeeResponse = await response.Content.ReadFromJsonAsync<EmployeeResponseGet>();
             if (employeeResponse is null)
                 return null;
             return employeeResponse;

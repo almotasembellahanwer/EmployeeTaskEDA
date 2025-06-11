@@ -39,6 +39,50 @@ namespace EmployeeTask.AccountService.Migrations
                     b.ToTable("Addresses", (string)null);
                 });
 
+            modelBuilder.Entity("EmployeeTask.AccountService.Entities.Area", b =>
+                {
+                    b.Property<int>("AreaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AreaID"));
+
+                    b.Property<int>("ArabicName")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnglishName")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GovernorateID")
+                        .HasColumnType("int");
+
+                    b.HasKey("AreaID");
+
+                    b.ToTable("Areas");
+                });
+
+            modelBuilder.Entity("EmployeeTask.AccountService.Entities.District", b =>
+                {
+                    b.Property<int>("DistrictID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DistrictID"));
+
+                    b.Property<int>("ArabicName")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AreaID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnglishName")
+                        .HasColumnType("int");
+
+                    b.HasKey("DistrictID");
+
+                    b.ToTable("Districts");
+                });
+
             modelBuilder.Entity("EmployeeTask.AccountService.Entities.Employee", b =>
                 {
                     b.Property<int>("EmployeeID")
@@ -62,6 +106,27 @@ namespace EmployeeTask.AccountService.Migrations
                         .HasFilter("[AddressID] IS NOT NULL");
 
                     b.ToTable("Employees", (string)null);
+                });
+
+            modelBuilder.Entity("EmployeeTask.AccountService.Entities.Governorate", b =>
+                {
+                    b.Property<int>("GovernorateID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GovernorateID"));
+
+                    b.Property<string>("ArabicName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EnglishName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("GovernorateID");
+
+                    b.ToTable("Governorates");
                 });
 
             modelBuilder.Entity("EmployeeTask.AccountService.Entities.Employee", b =>

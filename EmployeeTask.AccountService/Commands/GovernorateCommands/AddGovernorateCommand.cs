@@ -1,0 +1,7 @@
+﻿using MediatR;
+using SharedModels.DTO.GovernorateDTO;
+
+namespace EmployeeTask.AccountService.GovernorateCommands
+{
+    public record AddGovernorateCommand(GovernorateAddRequest GovernorateDTO) : IRequest<GovernorateResponse>;
+}

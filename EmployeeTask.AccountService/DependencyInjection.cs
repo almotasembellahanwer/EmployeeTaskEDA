@@ -1,10 +1,13 @@
 ﻿using EmployeeTask.AccountService.Data;
+using EmployeeTask.AccountService.Entities;
 using EmployeeTask.AccountService.Repositories;
 using EmployeeTask.AccountService.RepositoryContracts;
 using EmployeeTask.AccountService.ServiceContracts;
 using EmployeeTask.AccountService.Services;
+using Mapster;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using SharedModels.DTO.GovernorateDTO;
 
 namespace EmployeeTask.AccountService
 {
@@ -33,11 +36,21 @@ namespace EmployeeTask.AccountService
             {
                 x.UsingRabbitMq();
             });
+
+            //TypeAdapterConfig.GlobalSettings.Scan(typeof(Program).Assembly);
+            //// Configuration for mapping from GovernorateAddRequest to Governorate
+            //TypeAdapterConfig<GovernorateAddRequest, Governorate>.NewConfig()
+            //    .Map(dest => dest.ArabicName, src => src.ArabicName)
+            //    .Map(dest => dest.EnglishName, src => src.EnglishName);
+
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeesService, EmployeesService>();
 
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IAddressesService, AddressesService>();
+
+            services.AddScoped<IGovernorateRepository, GovernorateRepository>();
+            services.AddScoped<IGovernoratesService, GovernoratesService>();
             services.AddControllers();
 
             services.AddSwaggerGen();
