@@ -21,6 +21,8 @@ public class AccountDbContext : DbContext
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
         modelBuilder.ApplyConfiguration(new AddressConfiguration());
-
+        modelBuilder.ApplyConfiguration(new GovernorateConfiguration());
+        modelBuilder.ApplyConfiguration(new AreaConfiguration());
+        modelBuilder.ApplyConfiguration(new DistrictConfiguration());
     }
 }

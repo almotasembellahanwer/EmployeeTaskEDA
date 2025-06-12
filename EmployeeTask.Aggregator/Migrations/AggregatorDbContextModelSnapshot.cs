@@ -39,6 +39,54 @@ namespace EmployeeTask.Aggregator.Migrations
                     b.ToTable("Addresses", (string)null);
                 });
 
+            modelBuilder.Entity("EmployeeTask.Aggregator.Entities.Area", b =>
+                {
+                    b.Property<int>("AreaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AreaID"));
+
+                    b.Property<int>("ArabicName")
+                        .HasMaxLength(40)
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnglishName")
+                        .HasMaxLength(40)
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GovernorateID")
+                        .HasColumnType("int");
+
+                    b.HasKey("AreaID");
+
+                    b.ToTable("Areas", (string)null);
+                });
+
+            modelBuilder.Entity("EmployeeTask.Aggregator.Entities.District", b =>
+                {
+                    b.Property<int>("DistrictID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DistrictID"));
+
+                    b.Property<int>("ArabicName")
+                        .HasMaxLength(40)
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AreaID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnglishName")
+                        .HasMaxLength(40)
+                        .HasColumnType("int");
+
+                    b.HasKey("DistrictID");
+
+                    b.ToTable("Districts", (string)null);
+                });
+
             modelBuilder.Entity("EmployeeTask.Aggregator.Entities.Employee", b =>
                 {
                     b.Property<int>("EmployeeID")
@@ -62,6 +110,29 @@ namespace EmployeeTask.Aggregator.Migrations
                         .HasFilter("[AddressID] IS NOT NULL");
 
                     b.ToTable("Employees", (string)null);
+                });
+
+            modelBuilder.Entity("EmployeeTask.Aggregator.Entities.Governorate", b =>
+                {
+                    b.Property<int>("GovernorateID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GovernorateID"));
+
+                    b.Property<string>("ArabicName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("EnglishName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("GovernorateID");
+
+                    b.ToTable("Governorates", (string)null);
                 });
 
             modelBuilder.Entity("EmployeeTask.Aggregator.Entities.Employee", b =>

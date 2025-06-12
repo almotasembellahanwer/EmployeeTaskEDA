@@ -13,11 +13,18 @@ namespace EmployeeTask.Aggregator.Data
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Governorate> Governorates { get; set; }
+        public DbSet<Area> Areas { get; set; }
+        public DbSet<District> Districts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new AddressConfiguration());
+            modelBuilder.ApplyConfiguration(new GovernorateConfiguration());
+            modelBuilder.ApplyConfiguration(new AreaConfiguration());
+            modelBuilder.ApplyConfiguration(new DistrictConfiguration());
+
 
         }
     }

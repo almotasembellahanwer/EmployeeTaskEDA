@@ -50,5 +50,31 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.Aggregator.Controllers.GovernoratesController",
+    "Method": "GetAllGovernorates",
+    "RelativePath": "api/Governorates",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.Aggregator.Controllers.GovernoratesController",
+    "Method": "GetGovernorateByID",
+    "RelativePath": "api/Governorates/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

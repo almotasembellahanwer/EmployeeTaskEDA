@@ -1,6 +1,7 @@
 ﻿using EmployeeTask.Aggregator.AddressConsumer;
 using EmployeeTask.Aggregator.Data;
 using EmployeeTask.Aggregator.EmployeeConsumer;
+using EmployeeTask.Aggregator.GovernorateConsumer;
 using EmployeeTask.Aggregator.IRepositoryContracts;
 using EmployeeTask.Aggregator.Repositories;
 using EmployeeTask.Aggregator.ServiceContracts;
@@ -15,7 +16,7 @@ namespace EmployeeTask.Aggregator
         public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             string? connectionString = configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Invalid connection string");
+                    ?? throw new InvalidOperationException("Invalid connection string");
             services.AddDbContext<AggregatorDbContext>(options =>
             {
                 options.UseSqlServer(connectionString);
@@ -63,6 +64,21 @@ namespace EmployeeTask.Aggregator
                         e.UseMessageRetry(r => r.Interval(3, 1000));
                     });
 
+                    cfg.ReceiveEndpoint("governorate-added-event", e =>
+                    {
+                        e.ConfigureConsumer<GovernorateAddedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+                    cfg.ReceiveEndpoint("governorate-updated-event", e =>
+                    {
+                        e.ConfigureConsumer<GovernorateUpdatedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+                    cfg.ReceiveEndpoint("governorate-deleted-event", e =>
+                    {
+                        e.ConfigureConsumer<GovernorateDeletedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
                 });
             });
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
@@ -70,6 +86,9 @@ namespace EmployeeTask.Aggregator
 
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IAddressesService, AddressesService>();
+
+            services.AddScoped<IGovernorateRepository, GovernorateRepository>();
+            services.AddScoped<IGovernoratesService, GovernoratesService>();
             services.AddControllers();
             services.AddSwaggerGen();
 

@@ -1,11 +1,11 @@
-﻿using EmployeeTask.Aggregator.Queries;
+﻿using EmployeeTask.Aggregator.Queries.EmployeeQueries;
 using EmployeeTask.Aggregator.ServiceContracts;
 using MassTransit;
 using MediatR;
 using SharedModels.DTO.EmployeeDTO;
 using SharedModels.RabbitMQEvents;
 
-namespace EmployeeTask.Aggregator.Handlers
+namespace EmployeeTask.Aggregator.Handlers.EmployeeHandlers
 {
     public class GetEmployeesHandler : IRequestHandler<GetEmployeesQuery, IEnumerable<EmployeeResponseGet>>
     {
@@ -19,9 +19,9 @@ namespace EmployeeTask.Aggregator.Handlers
         public async Task<IEnumerable<EmployeeResponseGet>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
         {
             // Get All Employees from database
-            IEnumerable<EmployeeResponseGet>? employees =  await _employeesService.GetAllEmployees()
+            IEnumerable<EmployeeResponseGet>? employees = await _employeesService.GetAllEmployees()
                 ?? new List<EmployeeResponseGet>();
-            
+
             if (employees is null)
                 return new List<EmployeeResponseGet>();
             return employees;

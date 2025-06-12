@@ -1,10 +1,10 @@
-﻿using EmployeeTask.Aggregator.Queries;
+﻿using EmployeeTask.Aggregator.Queries.AddressQueries;
 using EmployeeTask.Aggregator.ServiceContracts;
 using MediatR;
 using SharedModels.DTO.AddressDTO;
 using SharedModels.DTO.EmployeeDTO;
 
-namespace EmployeeTask.Aggregator.Handlers
+namespace EmployeeTask.Aggregator.Handlers.AddressHandlers
 {
     public class GetAddressByIdHandler : IRequestHandler<GetAddressByIdQuery, AddressResponse?>
     {

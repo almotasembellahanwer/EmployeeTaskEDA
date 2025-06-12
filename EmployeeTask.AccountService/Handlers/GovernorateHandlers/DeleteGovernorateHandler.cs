@@ -2,6 +2,7 @@
 using EmployeeTask.AccountService.ServiceContracts;
 using MassTransit;
 using MediatR;
+using SharedModels.RabbitMQEvents.GovernorateEvents;
 
 namespace EmployeeTask.AccountService.Handlers.GovernorateHandlers
 {
@@ -19,15 +20,15 @@ namespace EmployeeTask.AccountService.Handlers.GovernorateHandlers
         public async Task<bool> Handle(DeleteGovernorateCommand request, CancellationToken cancellationToken)
         {
             bool isDeleted = await _governoratesService.DeleteGovernorate(request.GovernorateID);
-            //if (isDeleted)
-            //{
-            //    // Publish the event to rabbitmq
-            //    await _publishEndpoint.Publish<IAddressDeletedEvent>(new
-            //    {
-            //        request.AddressID,
-            //        DeletedAt = DateTime.UtcNow
-            //    });
-            //}
+            if (isDeleted)
+            {
+                // Publish the event to rabbitmq
+                await _publishEndpoint.Publish<IGovernorateDeletedEvent>(new
+                {
+                    request.GovernorateID,
+                    DeletedAt = DateTime.UtcNow
+                });
+            }
             return isDeleted;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using EmployeeTask.Aggregator.Queries;
+using EmployeeTask.Aggregator.Queries.AddressQueries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

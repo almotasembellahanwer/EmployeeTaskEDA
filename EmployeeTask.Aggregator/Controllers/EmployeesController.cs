@@ -1,4 +1,5 @@
 ﻿using EmployeeTask.Aggregator.Queries;
+using EmployeeTask.Aggregator.Queries.EmployeeQueries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SharedModels.DTO.EmployeeDTO;

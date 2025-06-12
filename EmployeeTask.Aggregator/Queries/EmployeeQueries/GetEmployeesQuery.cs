@@ -2,7 +2,7 @@
 using MediatR;
 using SharedModels.DTO.EmployeeDTO;
 
-namespace EmployeeTask.Aggregator.Queries
+namespace EmployeeTask.Aggregator.Queries.EmployeeQueries
 {
     public record GetEmployeesQuery() : IRequest<IEnumerable<EmployeeResponseGet>>;
 }

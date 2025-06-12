@@ -16,9 +16,9 @@ namespace EmployeeTask.AccountService.Migrations
                 {
                     AreaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ArabicName = table.Column<int>(type: "int", nullable: false),
-                    EnglishName = table.Column<int>(type: "int", nullable: false),
-                    GovernorateID = table.Column<int>(type: "int", nullable: false)
+                    ArabicName = table.Column<int>(type: "int", maxLength: 40, nullable: false),
+                    EnglishName = table.Column<int>(type: "int", maxLength: 40, nullable: false),
+                    GovernorateID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,9 +31,9 @@ namespace EmployeeTask.AccountService.Migrations
                 {
                     DistrictID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ArabicName = table.Column<int>(type: "int", nullable: false),
-                    EnglishName = table.Column<int>(type: "int", nullable: false),
-                    AreaID = table.Column<int>(type: "int", nullable: false)
+                    ArabicName = table.Column<int>(type: "int", maxLength: 40, nullable: false),
+                    EnglishName = table.Column<int>(type: "int", maxLength: 40, nullable: false),
+                    AreaID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,8 +46,8 @@ namespace EmployeeTask.AccountService.Migrations
                 {
                     GovernorateID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ArabicName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EnglishName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ArabicName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    EnglishName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {

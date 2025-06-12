@@ -1,9 +1,9 @@
-﻿using EmployeeTask.Aggregator.Queries;
+﻿using EmployeeTask.Aggregator.Queries.EmployeeQueries;
 using EmployeeTask.Aggregator.ServiceContracts;
 using MediatR;
 using SharedModels.DTO.EmployeeDTO;
 
-namespace EmployeeTask.Aggregator.Handlers
+namespace EmployeeTask.Aggregator.Handlers.EmployeeHandlers
 {
     public class GetEmployeeByIdHandler : IRequestHandler<GetEmployeeByIdQuery, EmployeeResponseGet?>
     {

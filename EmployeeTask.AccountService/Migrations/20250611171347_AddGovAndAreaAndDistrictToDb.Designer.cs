@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeTask.AccountService.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
-    [Migration("20250611164423_AddGovAndAreaAndDistrictToDb")]
+    [Migration("20250611171347_AddGovAndAreaAndDistrictToDb")]
     partial class AddGovAndAreaAndDistrictToDb
     {
         /// <inheritdoc />
@@ -51,17 +51,19 @@ namespace EmployeeTask.AccountService.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AreaID"));
 
                     b.Property<int>("ArabicName")
+                        .HasMaxLength(40)
                         .HasColumnType("int");
 
                     b.Property<int>("EnglishName")
+                        .HasMaxLength(40)
                         .HasColumnType("int");
 
-                    b.Property<int>("GovernorateID")
+                    b.Property<int?>("GovernorateID")
                         .HasColumnType("int");
 
                     b.HasKey("AreaID");
 
-                    b.ToTable("Areas");
+                    b.ToTable("Areas", (string)null);
                 });
 
             modelBuilder.Entity("EmployeeTask.AccountService.Entities.District", b =>
@@ -73,17 +75,19 @@ namespace EmployeeTask.AccountService.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DistrictID"));
 
                     b.Property<int>("ArabicName")
+                        .HasMaxLength(40)
                         .HasColumnType("int");
 
-                    b.Property<int>("AreaID")
+                    b.Property<int?>("AreaID")
                         .HasColumnType("int");
 
                     b.Property<int>("EnglishName")
+                        .HasMaxLength(40)
                         .HasColumnType("int");
 
                     b.HasKey("DistrictID");
 
-                    b.ToTable("Districts");
+                    b.ToTable("Districts", (string)null);
                 });
 
             modelBuilder.Entity("EmployeeTask.AccountService.Entities.Employee", b =>
@@ -121,15 +125,17 @@ namespace EmployeeTask.AccountService.Migrations
 
                     b.Property<string>("ArabicName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("EnglishName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("GovernorateID");
 
-                    b.ToTable("Governorates");
+                    b.ToTable("Governorates", (string)null);
                 });
 
             modelBuilder.Entity("EmployeeTask.AccountService.Entities.Employee", b =>

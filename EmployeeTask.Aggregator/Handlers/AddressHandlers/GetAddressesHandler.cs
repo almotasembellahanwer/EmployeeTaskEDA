@@ -1,9 +1,9 @@
-﻿using EmployeeTask.Aggregator.Queries;
+﻿using EmployeeTask.Aggregator.Queries.AddressQueries;
 using EmployeeTask.Aggregator.ServiceContracts;
 using MediatR;
 using SharedModels.DTO.AddressDTO;
 
-namespace EmployeeTask.Aggregator.Handlers
+namespace EmployeeTask.Aggregator.Handlers.AddressHandlers
 {
     public class GetAddressesHandler : IRequestHandler<GetAddressesQuery, IEnumerable<AddressResponse>>
     {
@@ -16,9 +16,9 @@ namespace EmployeeTask.Aggregator.Handlers
 
         public async Task<IEnumerable<AddressResponse>> Handle(GetAddressesQuery request, CancellationToken cancellationToken)
         {
-            // Get All Employees from database
+            // Get All Addresses from database
             IEnumerable<AddressResponse>? addresses = await _addressesService.GetAllAddresses();
-            
+
             if (addresses is null)
                 return new List<AddressResponse>();
             return addresses;
