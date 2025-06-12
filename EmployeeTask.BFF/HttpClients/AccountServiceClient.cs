@@ -1,4 +1,5 @@
 ﻿using SharedModels.DTO.AddressDTO;
+using SharedModels.DTO.AreaDTO;
 using SharedModels.DTO.EmployeeDTO;
 using SharedModels.DTO.GovernorateDTO;
 using System.Net;
@@ -247,6 +248,85 @@ namespace EmployeeTask.BFF.HttpClients
             
         }
         #endregion
+
+
+        #region Area Client
+        public async Task<AreaResponse?> AddArea(AreaAddRequest areaDTO)
+        {
+
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Areas", areaDTO);
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            AreaResponse? areaResponse = await response.Content.ReadFromJsonAsync<AreaResponse>();
+            if (areaResponse is null)
+                return null;
+            return areaResponse;
+
+        }
+        public async Task<AreaResponse?> UpdateArea(AreaUpdateRequest areaDTO)
+        {
+
+            HttpResponseMessage response = await _httpClient.PutAsJsonAsync("api/Areas", areaDTO);
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            AreaResponse? areaResponse = await response.Content.ReadFromJsonAsync<AreaResponse>();
+            if (areaResponse is null)
+                return null;
+            return areaResponse;
+
+        }
+        public async Task<bool> DeleteArea(int areaID)
+        {
+
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Areas/{areaID}");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return false;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+            return response.IsSuccessStatusCode;
+
+        }
+        #endregion
+
 
     }
 }

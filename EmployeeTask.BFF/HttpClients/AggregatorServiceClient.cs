@@ -1,4 +1,5 @@
 ﻿using SharedModels.DTO.AddressDTO;
+using SharedModels.DTO.AreaDTO;
 using SharedModels.DTO.EmployeeDTO;
 using SharedModels.DTO.GovernorateDTO;
 using System.Net;
@@ -180,5 +181,61 @@ namespace EmployeeTask.BFF.HttpClients
                 return governorateResponse;
         }
         #endregion
+
+        #region Area Client
+        public async Task<IEnumerable<AreaResponse>?> GetAllAreas()
+        {
+
+            HttpResponseMessage response = await _httpClient.GetAsync("api/Areas");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            IEnumerable<AreaResponse>? areaResponse = await response.Content.ReadFromJsonAsync<IEnumerable<AreaResponse>>();
+            if (areaResponse is null)
+                return new List<AreaResponse>();
+            return areaResponse;
+
+
+        }
+        public async Task<AreaResponse?> GetAreaByID(int areaID)
+        {
+
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Areas/{areaID}");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            AreaResponse? areaResponse = await response.Content.ReadFromJsonAsync<AreaResponse>();
+            if (areaResponse is null)
+                return null;
+            return areaResponse;
+        }
+        #endregion
+
     }
 }
