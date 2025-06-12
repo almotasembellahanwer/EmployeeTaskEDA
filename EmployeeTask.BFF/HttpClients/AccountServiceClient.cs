@@ -1,5 +1,6 @@
 ﻿using SharedModels.DTO.AddressDTO;
 using SharedModels.DTO.EmployeeDTO;
+using SharedModels.DTO.GovernorateDTO;
 using System.Net;
 namespace EmployeeTask.BFF.HttpClients
 {
@@ -11,146 +12,241 @@ namespace EmployeeTask.BFF.HttpClients
         {
             _httpClient = httpClient;
         }
-
+        #region Employee Client
         public async Task<EmployeeResponse?> AddEmployee(EmployeeAddRequest employeeDTO)
         {
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Employees", employeeDTO);
-            if (!response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NotFound)
+            
+                HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Employees", employeeDTO);
+                if (!response.IsSuccessStatusCode)
                 {
-                    return null;
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return null;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException("invalid response", null, response.StatusCode);
+                    }
                 }
-                else if (response.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
-                }
-                else
-                {
-                    throw new HttpRequestException("invalid response", null, response.StatusCode);
-                }
-            }
 
-            EmployeeResponse? employeeResponse = await response.Content.ReadFromJsonAsync<EmployeeResponse>();
-            if (employeeResponse is null)
-                return null;
-            return employeeResponse;
+                EmployeeResponse? employeeResponse = await response.Content.ReadFromJsonAsync<EmployeeResponse>();
+                if (employeeResponse is null)
+                    return null;
+                return employeeResponse;
+            
+          
         }
         public async Task<EmployeeResponse?> UpdateEmployee(EmployeeUpdateRequest employeeDTO)
         {
-            HttpResponseMessage response = await _httpClient.PutAsJsonAsync("api/Employees", employeeDTO);
-            if (!response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NotFound)
+          
+                HttpResponseMessage response = await _httpClient.PutAsJsonAsync("api/Employees", employeeDTO);
+                if (!response.IsSuccessStatusCode)
                 {
-                    return null;
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return null;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException("invalid response", null, response.StatusCode);
+                    }
                 }
-                else if (response.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
-                }
-                else
-                {
-                    throw new HttpRequestException("invalid response", null, response.StatusCode);
-                }
-            }
 
-            EmployeeResponse? employeeResponse = await response.Content.ReadFromJsonAsync<EmployeeResponse>();
-            if (employeeResponse is null)
-                return null;
-            return employeeResponse;
+                EmployeeResponse? employeeResponse = await response.Content.ReadFromJsonAsync<EmployeeResponse>();
+                if (employeeResponse is null)
+                    return null;
+                return employeeResponse;
+            
         }
         public async Task<bool> DeleteEmployee(int employeeID)
         {
-            HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Employees/{employeeID}");
-            if (!response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NotFound)
+
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Employees/{employeeID}");
+                if (!response.IsSuccessStatusCode)
                 {
-                    return false;
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return false;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException("invalid response", null, response.StatusCode);
+                    }
                 }
-                else if (response.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
-                }
-                else
-                {
-                    throw new HttpRequestException("invalid response", null, response.StatusCode);
-                }
-            }
-            return response.IsSuccessStatusCode;
+                return response.IsSuccessStatusCode;
+            
         }
 
+        #endregion
 
 
-
+        #region Address Client
         public async Task<AddressResponse?> AddAddress(AddressAddRequest addressDTO)
         {
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Addresses", addressDTO);
-            if (!response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    return null;
-                }
-                else if (response.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
-                }
-                else
-                {
-                    throw new HttpRequestException("invalid response", null, response.StatusCode);
-                }
-            }
 
-            AddressResponse? addressResponse = await response.Content.ReadFromJsonAsync<AddressResponse>();
-            if (addressResponse is null)
-                return null;
-            return addressResponse;
+                HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Addresses", addressDTO);
+                if (!response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return null;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException("invalid response", null, response.StatusCode);
+                    }
+                }
+
+                AddressResponse? addressResponse = await response.Content.ReadFromJsonAsync<AddressResponse>();
+                if (addressResponse is null)
+                    return null;
+                return addressResponse;
+            
         }
         public async Task<AddressResponse?> UpdateAddress(AddressUpdateRequest addressDTO)
         {
-            HttpResponseMessage response = await _httpClient.PutAsJsonAsync("api/Addresses", addressDTO);
-            if (!response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    return null;
-                }
-                else if (response.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
-                }
-                else
-                {
-                    throw new HttpRequestException("invalid response", null, response.StatusCode);
-                }
-            }
 
-            AddressResponse? addressResponse = await response.Content.ReadFromJsonAsync<AddressResponse>();
-            if (addressResponse is null)
-                return null;
-            return addressResponse;
+                HttpResponseMessage response = await _httpClient.PutAsJsonAsync("api/Addresses", addressDTO);
+                if (!response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return null;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException("invalid response", null, response.StatusCode);
+                    }
+                }
+
+                AddressResponse? addressResponse = await response.Content.ReadFromJsonAsync<AddressResponse>();
+                if (addressResponse is null)
+                    return null;
+                return addressResponse;
         }
         public async Task<bool> DeleteAddress(int addressID)
         {
-            HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Addresses/{addressID}");
-            if (!response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NotFound)
+
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Addresses/{addressID}");
+                if (!response.IsSuccessStatusCode)
                 {
-                    return false;
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return false;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException("invalid response", null, response.StatusCode);
+                    }
                 }
-                else if (response.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
-                }
-                else
-                {
-                    throw new HttpRequestException("invalid response", null, response.StatusCode);
-                }
-            }
-            return response.IsSuccessStatusCode;
+                return response.IsSuccessStatusCode;
+            
         }
+        #endregion
+
+
+
+
+        #region Governorate Client
+        public async Task<GovernorateResponse?> AddGovernorate(GovernorateAddRequest governorateDTO)
+        {
+
+                HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Governorates", governorateDTO);
+                if (!response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return null;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException("invalid response", null, response.StatusCode);
+                    }
+                }
+
+                GovernorateResponse? governorateResponse = await response.Content.ReadFromJsonAsync<GovernorateResponse>();
+                if (governorateResponse is null)
+                    return null;
+                return governorateResponse;
+            
+        }
+        public async Task<GovernorateResponse?> UpdateGovernorate(GovernorateUpdateRequest governorateDTO)
+        {
+
+                HttpResponseMessage response = await _httpClient.PutAsJsonAsync("api/Governorates", governorateDTO);
+                if (!response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return null;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException("invalid response", null, response.StatusCode);
+                    }
+                }
+
+                GovernorateResponse? governorateResponse = await response.Content.ReadFromJsonAsync<GovernorateResponse>();
+                if (governorateResponse is null)
+                    return null;
+                return governorateResponse;
+            
+        }
+        public async Task<bool> DeleteGovernorate(int governorateID)
+        {
+
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Governorates/{governorateID}");
+                if (!response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return false;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException("invalid response", null, response.StatusCode);
+                    }
+                }
+                return response.IsSuccessStatusCode;
+            
+        }
+        #endregion
+
     }
 }
