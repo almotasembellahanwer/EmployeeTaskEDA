@@ -51,6 +51,12 @@ namespace EmployeeTask.AccountService
 
             services.AddScoped<IGovernorateRepository, GovernorateRepository>();
             services.AddScoped<IGovernoratesService, GovernoratesService>();
+
+            services.AddScoped<IAreaRepository, AreaRepository>();
+            services.AddScoped<IAreasService, AreasService>();
+
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
+            services.AddScoped<IDistrictsService, DistrictsService>();
             services.AddControllers();
 
             services.AddSwaggerGen();

@@ -19,10 +19,12 @@ public class DistrictConfiguration : IEntityTypeConfiguration<District>
             .HasMaxLength(40)
             .IsRequired();
 
-        builder
-            .Property(a => a.AreaID)
-            .IsRequired(false);
 
+        builder
+            .HasOne(d => d.Area)
+            .WithOne()
+            .HasForeignKey<District>(d => d.AreaID)
+            .IsRequired(false);
         builder.ToTable("Districts");
     }
 }

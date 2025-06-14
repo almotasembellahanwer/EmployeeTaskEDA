@@ -1,5 +1,7 @@
 ﻿using EmployeeTask.Aggregator.AddressConsumer;
+using EmployeeTask.Aggregator.AreaConsumer;
 using EmployeeTask.Aggregator.Data;
+using EmployeeTask.Aggregator.DistrictConsumer;
 using EmployeeTask.Aggregator.EmployeeConsumer;
 using EmployeeTask.Aggregator.GovernorateConsumer;
 using EmployeeTask.Aggregator.IRepositoryContracts;
@@ -79,6 +81,38 @@ namespace EmployeeTask.Aggregator
                         e.ConfigureConsumer<GovernorateDeletedConsumer>(context);
                         e.UseMessageRetry(r => r.Interval(3, 1000));
                     });
+
+                    cfg.ReceiveEndpoint("area-added-event", e =>
+                    {
+                        e.ConfigureConsumer<AreaAddedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+                    cfg.ReceiveEndpoint("area-updated-event", e =>
+                    {
+                        e.ConfigureConsumer<AreaUpdatedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+                    cfg.ReceiveEndpoint("area-deleted-event", e =>
+                    {
+                        e.ConfigureConsumer<AreaDeletedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+
+                    cfg.ReceiveEndpoint("district-added-event", e =>
+                    {
+                        e.ConfigureConsumer<DistrictAddedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+                    cfg.ReceiveEndpoint("district-updated-event", e =>
+                    {
+                        e.ConfigureConsumer<DistrictUpdatedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+                    cfg.ReceiveEndpoint("district-deleted-event", e =>
+                    {
+                        e.ConfigureConsumer<DistrictDeletedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
                 });
             });
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
@@ -89,6 +123,13 @@ namespace EmployeeTask.Aggregator
 
             services.AddScoped<IGovernorateRepository, GovernorateRepository>();
             services.AddScoped<IGovernoratesService, GovernoratesService>();
+
+            services.AddScoped<IAreaRepository, AreaRepository>();
+            services.AddScoped<IAreasService, AreasService>();
+
+
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
+            services.AddScoped<IDistrictsService, DistrictsService>();
             services.AddControllers();
             services.AddSwaggerGen();
 

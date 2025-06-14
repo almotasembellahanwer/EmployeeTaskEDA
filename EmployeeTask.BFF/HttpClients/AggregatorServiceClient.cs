@@ -1,5 +1,6 @@
 ﻿using SharedModels.DTO.AddressDTO;
 using SharedModels.DTO.AreaDTO;
+using SharedModels.DTO.DistrictDTO;
 using SharedModels.DTO.EmployeeDTO;
 using SharedModels.DTO.GovernorateDTO;
 using System.Net;
@@ -236,6 +237,62 @@ namespace EmployeeTask.BFF.HttpClients
             return areaResponse;
         }
         #endregion
+
+        #region District Client
+        public async Task<IEnumerable<DistrictResponse>?> GetAllDistricts()
+        {
+
+            HttpResponseMessage response = await _httpClient.GetAsync("api/Districts");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            IEnumerable<DistrictResponse>? districtResponse = await response.Content.ReadFromJsonAsync<IEnumerable<DistrictResponse>>();
+            if (districtResponse is null)
+                return new List<DistrictResponse>();
+            return districtResponse;
+
+
+        }
+        public async Task<DistrictResponse?> GetDistrictByID(int districtID)
+        {
+
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Districts/{districtID}");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            DistrictResponse? districtResponse = await response.Content.ReadFromJsonAsync<DistrictResponse>();
+            if (districtResponse is null)
+                return null;
+            return districtResponse;
+        }
+        #endregion
+
 
     }
 }

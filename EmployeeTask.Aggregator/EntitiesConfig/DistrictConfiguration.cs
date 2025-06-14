@@ -20,7 +20,9 @@ public class DistrictConfiguration : IEntityTypeConfiguration<District>
             .IsRequired();
 
         builder
-            .Property(a => a.AreaID)
+            .HasOne(d => d.Area)
+            .WithOne()
+            .HasForeignKey<District>(d => d.AreaID)
             .IsRequired(false);
 
         builder.ToTable("Districts");

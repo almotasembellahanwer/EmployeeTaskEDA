@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EmployeeTask.Aggregator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec845e7903c6153208b3c5fe1633dd3c2d697a6c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d22c4f75e410830a52be356a071c4660e7746644")]
 [assembly: System.Reflection.AssemblyProductAttribute("EmployeeTask.Aggregator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EmployeeTask.Aggregator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

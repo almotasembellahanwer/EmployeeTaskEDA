@@ -48,6 +48,102 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EmployeeTask.AccountService.Controllers.AreasController",
+    "Method": "AddArea",
+    "RelativePath": "api/Areas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "areaDTO",
+        "Type": "SharedModels.DTO.AreaDTO.AreaAddRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.AccountService.Controllers.AreasController",
+    "Method": "UpdateArea",
+    "RelativePath": "api/Areas",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "areaDTO",
+        "Type": "SharedModels.DTO.AreaDTO.AreaUpdateRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.AccountService.Controllers.AreasController",
+    "Method": "DeleteArea",
+    "RelativePath": "api/Areas/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.AccountService.Controllers.DistrictsController",
+    "Method": "AddDistrict",
+    "RelativePath": "api/Districts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "districtDTO",
+        "Type": "SharedModels.DTO.DistrictDTO.DistrictAddRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.AccountService.Controllers.DistrictsController",
+    "Method": "UpdateDistrict",
+    "RelativePath": "api/Districts",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "districtDTO",
+        "Type": "SharedModels.DTO.DistrictDTO.DistrictUpdateRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeTask.AccountService.Controllers.DistrictsController",
+    "Method": "DeleteDistrict",
+    "RelativePath": "api/Districts/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EmployeeTask.AccountService.Controllers.EmployeesController",
     "Method": "AddEmployee",
     "RelativePath": "api/Employees",

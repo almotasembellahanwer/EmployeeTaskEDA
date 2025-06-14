@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SharedModels.DTO;
 using SharedModels.DTO.AreaDTO;
-using SharedModels.DTO.GovernorateDTO;
 using System.Net;
 
 namespace EmployeeTask.BFF.Controllers

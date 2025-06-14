@@ -9,7 +9,7 @@ using SharedModels.DTO.GovernorateDTO;
 
 namespace EmployeeTask.Aggregator.Handlers.AreaHandlers
 {
-    public class GetAreasHandler : IRequestHandler<GetAreasQuery, IEnumerable<AreaResponse>>
+    public class GetAreasHandler : IRequestHandler<GetAreasQuery, IEnumerable<AreaResponseGet>>
     {
         private readonly IAreasService _areasService;
 
@@ -18,13 +18,13 @@ namespace EmployeeTask.Aggregator.Handlers.AreaHandlers
             _areasService = areasService;
         }
 
-        public async Task<IEnumerable<AreaResponse>> Handle(GetAreasQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<AreaResponseGet>> Handle(GetAreasQuery request, CancellationToken cancellationToken)
         {
             // Get All Areas from database
-            IEnumerable<AreaResponse>? areas = await _areasService.GetAllAreas();
+            IEnumerable<AreaResponseGet>? areas = await _areasService.GetAllAreas();
             
             if (areas is null)
-                return new List<AreaResponse>();
+                return new List<AreaResponseGet>();
             return areas;
         }
     }

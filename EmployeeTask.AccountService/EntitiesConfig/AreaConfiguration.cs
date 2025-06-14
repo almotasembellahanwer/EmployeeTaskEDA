@@ -18,9 +18,12 @@ public class AreaConfiguration : IEntityTypeConfiguration<Area>
             .Property(a => a.ArabicName)
             .HasMaxLength(40)
             .IsRequired();
+
         builder
-            .Property(a => a.GovernorateID)
-            .IsRequired(false);
+           .HasOne(a => a.Governorate)
+           .WithOne()
+           .HasForeignKey<Area>(a => a.GovernorateID)
+           .IsRequired(false);
         builder.ToTable("Areas");
     }
 }

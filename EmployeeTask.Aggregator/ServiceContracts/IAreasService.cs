@@ -6,8 +6,8 @@ namespace EmployeeTask.Aggregator.ServiceContracts
 {
     public interface IAreasService
     {
-        Task<IEnumerable<AreaResponse>?> GetAllAreas();
-        Task<AreaResponse?> GetAreaByID(int areaID);
+        Task<IEnumerable<AreaResponseGet>?> GetAllAreas();
+        Task<AreaResponseGet?> GetAreaByID(int areaID);
         Task<AreaResponse?> AddArea(AreaAddRequest? entity);
         Task<AreaResponse?> UpdateArea(AreaUpdateRequest? entity);
         Task<bool> DeleteArea(int areaID);

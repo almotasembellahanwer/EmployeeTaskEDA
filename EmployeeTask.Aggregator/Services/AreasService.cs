@@ -14,24 +14,22 @@ namespace EmployeeTask.Aggregator.Services
             _areaRepository = areaRepository;
         }
 
-        public async Task<IEnumerable<AreaResponse>?> GetAllAreas()
+        public async Task<IEnumerable<AreaResponseGet>?> GetAllAreas()
         {
-            IEnumerable<Area>? areas = await _areaRepository.GetAllAreas();
-            if (areas is null)
-                return new List<AreaResponse>();
-            IEnumerable<AreaResponse> response = areas.Adapt<IEnumerable<AreaResponse>>();
+            IEnumerable<AreaResponseGet>? response = await _areaRepository.GetAllAreas();
+            if (response is null)
+                return new List<AreaResponseGet>();
             return response;
         }
 
-        public async Task<AreaResponse?> GetAreaByID(int areaID)
+        public async Task<AreaResponseGet?> GetAreaByID(int areaID)
         {
             if (areaID == 0)
                 throw new ArgumentException("Invalid ID");
-            Area? area = await _areaRepository.GetAreaByID(areaID);
+            AreaResponseGet? area = await _areaRepository.GetAreaByID(areaID);
             if (area is null)
                 return null;
-            AreaResponse response = area.Adapt<AreaResponse>();
-            return response;
+            return area;
         }
         public async Task<AreaResponse?> AddArea(AreaAddRequest? entity)
         {

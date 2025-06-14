@@ -27,7 +27,7 @@ namespace EmployeeTask.Aggregator.AreaConsumer
                 IAreaCreatedEvent message = context.Message;
                 _logger.LogInformation("Area Added: {AreaID}, {ArabicName}, {EnglishName}, {GovernorateID}"
                     , message.AreaID, message.ArabicName,message.EnglishName, message.GovernorateID);
-                var area = message.Adapt<AreaAddRequest>();
+                var area = new AreaAddRequest(message.ArabicName!, message.EnglishName!, message.GovernorateID);
                 AreaResponse? result = await _areasService.AddArea(area);
                 if (result is null)
                 {
