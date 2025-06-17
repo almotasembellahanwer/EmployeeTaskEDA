@@ -15,6 +15,7 @@ public class AccountDbContext : DbContext
     public DbSet<Governorate> Governorates { get; set; }
     public DbSet<Area> Areas { get; set; }
     public DbSet<District> Districts { get; set; }
+    public DbSet<Department> Departments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

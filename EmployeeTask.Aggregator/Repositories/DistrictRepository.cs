@@ -47,6 +47,7 @@ namespace EmployeeTask.Aggregator.Repositories
                                     DistrictID = district.DistrictID,
                                     ArabicName = district.ArabicName,
                                     EnglishName = district.EnglishName,
+                                    AreaArabicName = area.ArabicName,
                                     GovernorateArabicName = gov.ArabicName
                                 }).FirstOrDefaultAsync();
             if (districtResponse is null)

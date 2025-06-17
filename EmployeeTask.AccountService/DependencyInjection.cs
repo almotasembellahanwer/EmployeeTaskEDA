@@ -1,13 +1,10 @@
 ﻿using EmployeeTask.AccountService.Data;
-using EmployeeTask.AccountService.Entities;
 using EmployeeTask.AccountService.Repositories;
 using EmployeeTask.AccountService.RepositoryContracts;
 using EmployeeTask.AccountService.ServiceContracts;
 using EmployeeTask.AccountService.Services;
-using Mapster;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using SharedModels.DTO.GovernorateDTO;
 
 namespace EmployeeTask.AccountService
 {
@@ -57,6 +54,9 @@ namespace EmployeeTask.AccountService
 
             services.AddScoped<IDistrictRepository, DistrictRepository>();
             services.AddScoped<IDistrictsService, DistrictsService>();
+
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentsService, DepartmentsService>();
             services.AddControllers();
 
             services.AddSwaggerGen();
