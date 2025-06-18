@@ -1,5 +1,6 @@
 ﻿using SharedModels.DTO.AddressDTO;
 using SharedModels.DTO.AreaDTO;
+using SharedModels.DTO.DepartmentDTO;
 using SharedModels.DTO.DistrictDTO;
 using SharedModels.DTO.EmployeeDTO;
 using SharedModels.DTO.GovernorateDTO;
@@ -404,6 +405,84 @@ namespace EmployeeTask.BFF.HttpClients
 
         }
         #endregion
+
+        #region Department Client
+        public async Task<DepartmentResponse?> AddDepartment(DepartmentAddRequest departmentDTO)
+        {
+
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Departments", departmentDTO);
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            DepartmentResponse? departmentResponse = await response.Content.ReadFromJsonAsync<DepartmentResponse>();
+            if (departmentResponse is null)
+                return null;
+            return departmentResponse;
+
+        }
+        public async Task<DepartmentResponse?> UpdateDepartment(DepartmentUpdateRequest departmentDTO)
+        {
+
+            HttpResponseMessage response = await _httpClient.PutAsJsonAsync("api/Departments", departmentDTO);
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            DepartmentResponse? departmentResponse = await response.Content.ReadFromJsonAsync<DepartmentResponse>();
+            if (departmentResponse is null)
+                return null;
+            return departmentResponse;
+
+        }
+        public async Task<bool> DeleteDepartment(int departmentID)
+        {
+
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Departments/{departmentID}");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return false;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+            return response.IsSuccessStatusCode;
+
+        }
+        #endregion
+
 
     }
 }

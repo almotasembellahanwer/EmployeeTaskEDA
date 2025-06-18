@@ -1,5 +1,6 @@
 ﻿using SharedModels.DTO.AddressDTO;
 using SharedModels.DTO.AreaDTO;
+using SharedModels.DTO.DepartmentDTO;
 using SharedModels.DTO.DistrictDTO;
 using SharedModels.DTO.EmployeeDTO;
 using SharedModels.DTO.GovernorateDTO;
@@ -292,6 +293,62 @@ namespace EmployeeTask.BFF.HttpClients
             return districtResponse;
         }
         #endregion
+
+        #region Department Client
+        public async Task<IEnumerable<DepartmentResponse>?> GetAllDepartments()
+        {
+
+            HttpResponseMessage response = await _httpClient.GetAsync("api/Departments");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            IEnumerable<DepartmentResponse>? departmentResponse = await response.Content.ReadFromJsonAsync<IEnumerable<DepartmentResponse>>();
+            if (departmentResponse is null)
+                return new List<DepartmentResponse>();
+            return departmentResponse;
+
+
+        }
+        public async Task<DepartmentResponse?> GetDepartmentByID(int departmentID)
+        {
+
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Departments/{departmentID}");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new HttpRequestException("Bad request", null, HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    throw new HttpRequestException("invalid response", null, response.StatusCode);
+                }
+            }
+
+            DepartmentResponse? departmentResponse = await response.Content.ReadFromJsonAsync<DepartmentResponse>();
+            if (departmentResponse is null)
+                return null;
+            return departmentResponse;
+        }
+        #endregion
+
 
 
     }
