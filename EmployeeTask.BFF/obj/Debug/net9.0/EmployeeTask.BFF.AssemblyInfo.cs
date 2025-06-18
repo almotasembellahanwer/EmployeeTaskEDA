@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EmployeeTask.BFF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a323cb1be6b0e25200d23af94395790f46e7064c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eed955fcaddd739ac98661804df6b68d713364c8")]
 [assembly: System.Reflection.AssemblyProductAttribute("EmployeeTask.BFF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EmployeeTask.BFF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
