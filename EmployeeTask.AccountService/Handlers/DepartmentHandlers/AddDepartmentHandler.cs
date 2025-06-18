@@ -28,8 +28,7 @@ namespace EmployeeTask.AccountService.Handlers.DepartmentHandlers
                 {
                     departmentResponse.DepartmentID,
                     departmentResponse.DepartmentName,
-                    departmentResponse.Active,
-                    departmentResponse.CreatedAt
+                    departmentResponse.Active
                 });
             }
             return departmentResponse ?? throw new InvalidOperationException("Error while adding a department");

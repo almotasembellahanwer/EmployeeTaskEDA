@@ -28,7 +28,6 @@ namespace EmployeeTask.AccountService.Handlers.DepartmentHandlers
                 {
                     departmentResponse.DepartmentName,
                     departmentResponse.Active,
-                    departmentResponse.CreatedAt,
                     UpdatedAt = DateTime.UtcNow
                 });
             }

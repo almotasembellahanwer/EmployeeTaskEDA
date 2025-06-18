@@ -1,2 +1,6 @@
 ﻿namespace SharedModels.DTO.DepartmentDTO;
-public record DepartmentAddRequest(string DepartmentName, bool Active, DateTime CreatedAt);
+public class DepartmentAddRequest
+{
+    public string DepartmentName { get; set; } = string.Empty;
+    public bool Active { get; set; }
+}

@@ -1,6 +1,7 @@
 ﻿using EmployeeTask.Aggregator.AddressConsumer;
 using EmployeeTask.Aggregator.AreaConsumer;
 using EmployeeTask.Aggregator.Data;
+using EmployeeTask.Aggregator.DepartmentConsumer;
 using EmployeeTask.Aggregator.DistrictConsumer;
 using EmployeeTask.Aggregator.EmployeeConsumer;
 using EmployeeTask.Aggregator.GovernorateConsumer;
@@ -113,6 +114,22 @@ namespace EmployeeTask.Aggregator
                         e.ConfigureConsumer<DistrictDeletedConsumer>(context);
                         e.UseMessageRetry(r => r.Interval(3, 1000));
                     });
+
+                    cfg.ReceiveEndpoint("department-added-event", e =>
+                    {
+                        e.ConfigureConsumer<DepartmentAddedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+                    cfg.ReceiveEndpoint("department-updated-event", e =>
+                    {
+                        e.ConfigureConsumer<DepartmentUpdatedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
+                    cfg.ReceiveEndpoint("department-deleted-event", e =>
+                    {
+                        e.ConfigureConsumer<DepartmentDeletedConsumer>(context);
+                        e.UseMessageRetry(r => r.Interval(3, 1000));
+                    });
                 });
             });
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
@@ -130,6 +147,10 @@ namespace EmployeeTask.Aggregator
 
             services.AddScoped<IDistrictRepository, DistrictRepository>();
             services.AddScoped<IDistrictsService, DistrictsService>();
+
+
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentsService, DepartmentsService>();
             services.AddControllers();
             services.AddSwaggerGen();
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeTask.AccountService.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
-    [Migration("20250617151447_AddDepartmentToDb")]
+    [Migration("20250618072014_AddDepartmentToDb")]
     partial class AddDepartmentToDb
     {
         /// <inheritdoc />
@@ -89,11 +89,12 @@ namespace EmployeeTask.AccountService.Migrations
 
                     b.Property<string>("DepartmentName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("DepartmentID");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("EmployeeTask.AccountService.Entities.District", b =>

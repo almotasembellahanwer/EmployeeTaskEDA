@@ -1,8 +1,6 @@
 ﻿using EmployeeTask.AccountService.DistrictCommands;
-using EmployeeTask.AccountService.DistrictCommands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SharedModels.DTO.DistrictDTO;
 using SharedModels.DTO.DistrictDTO;
 
 namespace EmployeeTask.AccountService.Controllers

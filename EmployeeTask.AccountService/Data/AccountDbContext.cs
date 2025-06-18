@@ -25,5 +25,7 @@ public class AccountDbContext : DbContext
         modelBuilder.ApplyConfiguration(new GovernorateConfiguration());
         modelBuilder.ApplyConfiguration(new AreaConfiguration());
         modelBuilder.ApplyConfiguration(new DistrictConfiguration());
+        modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
+
     }
 }
